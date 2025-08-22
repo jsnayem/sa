@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <h1>Meeting Reports</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search meeting reports...">
+                <button class="btn">Search</button>
+            </div>
+        </header>
+        <div class="pages-container">
+            <div class="a4-page" id="printArea">
+                <div class="page-header">
+                    <img class="logo" src="static/logo.png" alt="Logo" crossorigin="anonymous">
+                    <div class="page-header-address">Address: <span>55/B Purana Paltan, Dhaka-1000, Bangladesh.</span></div>
+                </div>
+                <div class="heading-1 centered">1st Board Meeting</div>
+                <div class="heading-and-date">
+                    <div class="heading-text">Minutes by Proceedings</div>
+                    <div class="heading-text">Date: <span>Sunday, 18 2018</span></div>
+                </div>
+                <div>Minutes the Meting of Burd of Directors held on Sunday, 18 2018</div>
+                <p>The 1st Meeting the Board of Directors of BRS Company was held on Sunday, 18 при 18:30 hours at the All C Rooms 2018</p>
+                <div class="bold">The Meeting was attended by:</div>
+                <ol>
+                    <li>SAR</li>
+                    <li>DSEC</li>
+                </ol>
+                <div class="bold">The Meeting was attended by:</div>
+                <ol>
+                    <li>Zaker Rahmahuallah</li>
+                    <li>CS SRS Company</li>
+                </ol>
+                <div class="heading-2 centered">Proceedings of the Meeting</div>
+                <p>The Meeting wiresided over by SAR Chamnan of the Company The Quonth of the teeting was med and the Meaning and tre</p>
+                <p>At the the Chaman weltmed et and unsurfory heaks. Thereafter the Meeting</p>
+                </br>
+                <div class="heading-2">1.1 General issue</div>
+                <div class="heading-2 underlined">Agenda-1.1.1</div>
+                <div class="bold">To grant Laave of Absence</div>
+                <p>The member has discussion on the agenda <span class="bold">as Proposed by Zaker Rahmatullah and seconded Zaker Matimatullahit was Granted with Unanumously that-</span></p>
+                <p>The Leave of Absence and is beunby granted</p>
+                </br>
+                <div class="heading-2">1.2 Matters for Taking on Record/Review/Ratification by the Board</div>
+                <div class="heading-2 underlined">Agenda-1.2.1</div>
+                <div class="bold">Fast Quarter Financial Statement Review</div>
+                <p>The member hot a bathe <span class="bold">As proposed by Md Meather and seconded by lt that-</span></p>
+                <p>The proposal is granted</p>
+                </br>
+                <div class="heading-2 underlined">Agenda-1.2.2</div>
+                <div class="bold">To Review the Status of Business of the Company</div>
+                <p>The member had a discussion on the agenda <span class="bold">As proposed by SAR and seconded by. It was that-</span></p>
+                <p>There being no other business to transact, the meeting ended with a vote of thanks to and from the chair.</p>
+                </br>
+                <div class="signature-container">
+                    <div class="signature">
+                        <p>Zaker Rahmatullah</p>
+                        <p>Company Secretary</p>
+                    </div>
+                    <div class="signature">
+                        <p>Zaker Rahmatullah</p>
+                        <p>Company Secretary</p>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <div class="centered">Page-1</div>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="btn" id="printButton"><i class="fa-solid fa-print"></i> Print</button>
+            <button class="btn" id="saveButton"><i class="fa-solid fa-download"></i> Download</button>
+        </div>
+        <footer>
+            <p>© 2023 Company Meeting Reports. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveButton = document.getElementById('saveButton');
+            
+            saveButton.addEventListener('click', function() {
+                // Show a loading indicator
+                const originalText = saveButton.innerHTML;
+                saveButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+                saveButton.disabled = true;
+                
+                // Get the element to print
+                const element = document.getElementById('printArea');
+                
+                // Configuration for html2pdf
+                const opt = {
+                    margin: 10,
+                    filename: 'converted-document.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                
+                // Generate and download PDF
+                html2pdf().set(opt).from(element).save().then(() => {
+                    // Restore button text after successful download
+                    saveButton.innerHTML = originalText;
+                    saveButton.disabled = false;
+                }).catch(error => {
+                    console.error('PDF generation failed:', error);
+                    saveButton.innerHTML = originalText;
+                    saveButton.disabled = false;
+                    alert('Failed to generate PDF. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
