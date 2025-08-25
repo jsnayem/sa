@@ -102,10 +102,10 @@
                 
                 // Configuration for html2pdf
                 const opt = {
-                    margin: 10,
+                    margin: 1,
                     filename: 'converted-document.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
+                    html2canvas: { scale: 2, scrollY: 0, dpi: 300, letterRendering: true, width: 850, height: 1200  },
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
                 
